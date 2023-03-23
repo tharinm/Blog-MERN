@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
 const authRoute = require('./routes/auth');
+const userRoute=require('./routes/users')
 
 dotenv.config();
 
@@ -19,7 +20,8 @@ app.get("/", (req, res, next) => {
    console.log('This is main URL')
 });
 
-app.use('/api/auth',authRoute)
+app.use('/api/auth', authRoute);
+app.use('/api/users',userRoute)
 
 app.listen(8080, () => {
   console.log("Backend is running..!");
