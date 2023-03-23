@@ -12,7 +12,7 @@ app.use(express.json());
 
 mongoose
   .connect(process.env.MONGO_URL)
-  .then(console.log("Database connected"))
+  .then()
   .catch((err) => console.log(err));
 
 app.get("/", (req, res, next) => {
