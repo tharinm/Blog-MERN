@@ -9,16 +9,16 @@ const UserSchema = new Schema({
         unique: true,
     },
     email: {
-        tyepe: String,
+        type: String,
         required: true,
         unique: true,
     },
     password: {
-        tyepe: String,
+        type: String,
         required: true,
     },
     profilePic: {
-        tyepe: String,
+        type: String,
         default: '',
     },
   
