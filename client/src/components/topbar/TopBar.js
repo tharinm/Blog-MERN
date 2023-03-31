@@ -1,5 +1,5 @@
 import React from "react";
-import {  Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./topbar.css";
 
 export default function TopBar() {
@@ -7,10 +7,10 @@ export default function TopBar() {
   return (
     <div className="top">
       <div className="topLeft">
-        <i class="fa-brands fa-square-facebook topIcon"></i>
-        <i class="topIcon fa-brands fa-square-twitter"></i>
-        <i class="topIcon fa-brands fa-square-pinterest"></i>
-        <i class="topIcon fa-brands fa-square-instagram"></i>
+        <i className="fa-brands fa-square-facebook topIcon"></i>
+        <i className="topIcon fa-brands fa-square-twitter"></i>
+        <i className="topIcon fa-brands fa-square-pinterest"></i>
+        <i className="topIcon fa-brands fa-square-instagram"></i>
       </div>
       <div className="topCenter">
         <ul className="topList">
