@@ -1,17 +1,37 @@
 import React from "react";
 import "./singlePost.css";
+import axios from "axios";
+import { useLocation } from "react-router";
+import { useEffect, useState } from "react";
 
 export default function SinglePost() {
+  const location = useLocation();
+
+
+  //get post location
+  const path = location.pathname.split("/")[2];
+  const [post, setPost] = useState({});
+  // const [title, setTitle] = useState({})
+  // const [desc,setDesc]=useState({})
+
+   useEffect(() => {
+     const getPost = async () => {
+       const res = await axios.get("/posts/" + path);
+       setPost(res.data);
+      //  setTitle(res.data.title);
+      //  setDesc(res.data.desc);
+     };
+     getPost();
+   }, [path]);
+
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        <img
-          src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-          alt=""
-          className="singlePostImg "
-        />
+        {post.photo && (
+          <img src={post.photo} alt="" className="singlePostImg " />
+        )}
         <h1 className="singlePostTitle">
-          Velit consectetur pariatur Lorem consequat do
+         {post.title}
           <div className="singlePostEdit">
             <i class="singlePostIcon fa-solid fa-pen-to-square"></i>
             <i class="singlePostIcon fa-solid fa-trash"></i>
