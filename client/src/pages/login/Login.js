@@ -23,8 +23,8 @@ export default function Login() {
     }
   };
 
-  console.log(isFetching);
-  console.log(user)
+
+
   return (
     <div className="login">
       <span className="loginTitle"></span>
@@ -43,7 +43,7 @@ export default function Login() {
           placeholder="Enter your password..."
           ref={passwordRef}
         />
-        <button className="loginButton" type="submit">
+        <button className="loginButton" type="submit" disabled={isFetching}>
           Login
         </button>
       </form>
