@@ -2,12 +2,15 @@ import React from "react";
 import "./singlePost.css";
 import axios from "axios";
 import { useLocation } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../../context/Context";
 
 export default function SinglePost() {
   const location = useLocation();
   const PF = "http://localhost:3000/images/";
+
+  const { user } = useContext(Context);
 
   //get post location
   const path = location.pathname.split("/")[2];
@@ -15,28 +18,42 @@ export default function SinglePost() {
   // const [title, setTitle] = useState({})
   // const [desc,setDesc]=useState({})
 
-   useEffect(() => {
-     const getPost = async () => {
-       const res = await axios.get("/posts/" + path);
-       setPost(res.data);
+  useEffect(() => {
+    const getPost = async () => {
+      const res = await axios.get("/posts/" + path);
+      setPost(res.data);
       //  setTitle(res.data.title);
       //  setDesc(res.data.desc);
-     };
-     getPost();
-   }, [path]);
+    };
+    getPost();
+  }, [path]);
 
+  const handleDelete = async () => {
+    try {
+      //axios delete method
+      await axios.delete(`/posts/${post._id}`, { data: { username: user.username } });
+      window.location.replace("/");
+    } catch (error) {
+      console.log(error)
+    }
+  };
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
         {post.photo && (
-          <img src={PF+post.photo} alt="" className="singlePostImg " />
+          <img src={PF + post.photo} alt="" className="singlePostImg " />
         )}
         <h1 className="singlePostTitle">
           {post.title}
-          <div className="singlePostEdit">
-            <i class="singlePostIcon fa-solid fa-pen-to-square"></i>
-            <i class="singlePostIcon fa-solid fa-trash"></i>
-          </div>
+          {post.username === user?.username && (
+            <div className="singlePostEdit">
+              <i class="singlePostIcon fa-solid fa-pen-to-square"></i>
+              <i
+                class="singlePostIcon fa-solid fa-trash"
+                onClick={handleDelete}
+              ></i>
+            </div>
+          )}
         </h1>
         <div className="singlePostInfo">
           <span>
@@ -49,9 +66,7 @@ export default function SinglePost() {
             {new Date(post.createdAt).toDateString()}
           </span>
         </div>
-        <p className="singlePostDesc">
-          {post.desc}
-        </p>
+        <p className="singlePostDesc">{post.desc}</p>
       </div>
     </div>
   );
