@@ -8,11 +8,13 @@ const userRoute = require("./routes/users");
 const postRoute = require("./routes/post");
 const categoryRoute = require("./routes/categories");
 const multer = require("multer");
+const path = require("path");
 
 dotenv.config();
 
 //to read json files
 app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "/images")));
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -43,6 +45,6 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/catergories", categoryRoute);
 
-app.listen(8080, () => {
+app.listen(3000, () => {
   console.log("Backend is running..!");
 });
