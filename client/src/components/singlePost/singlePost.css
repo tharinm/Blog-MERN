@@ -21,6 +21,19 @@
   font-family: "Lora", sans-serif;
 }
 
+.singlePostTitleInput {
+  margin: 10px;
+  font-size: 28px;
+  font-family: "Lora", sans-serif;
+  border:none;
+  color:gray;
+  border-bottom:1px solid lightgray
+}
+
+.singlePostTitleInput:focus{
+outline: none;
+}
+
 .singlePostEdit {
   float: right;
   font-size: 16px;
@@ -47,7 +60,7 @@
   font-family: "Varela Round", Arial, Helvetica, sans-serif;
 }
 
-.singlePostAuthor{
+.singlePostAuthor {
   margin-left: 5px;
 }
 
@@ -57,8 +70,32 @@
   line-height: 25px;
 }
 
+.singlePostDescInput{
+border:none;
+color: #666;
+font-size: 18px;
+line-height: 25px;
+
+}
+
 .singlePostDesc::first-letter {
   margin-left: 20px;
   font-size: 30px;
   font-weight: 600;
+}
+
+.singlePostDescInput:focus{
+  outline: none;
+}
+
+.singlePostButton{
+  border: none;
+  padding: 10px;
+   background-color: teal;
+   color:white;
+   border-radius: 10px;
+   margin-top: 15px;
+   width: 100px;
+   cursor: pointer;
+   align-self: flex-end;
 }
