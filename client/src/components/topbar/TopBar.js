@@ -7,7 +7,7 @@ import { Context } from "../../context/Context";
 
 export default function TopBar() {
    const { user,dispatch } = useContext(Context);
-
+   const PF = "http://localhost:3000/images/";
   const hanldeLogout = () => {
     dispatch({type:"LOGOUT"})
   }
@@ -32,17 +32,17 @@ export default function TopBar() {
             </li>
           )}
 
-          {user && <li className="topListItem" onClick={hanldeLogout}>LOGOUT</li>}
+          {user && (
+            <li className="topListItem" onClick={hanldeLogout}>
+              LOGOUT
+            </li>
+          )}
         </ul>
       </div>
       <div className="topRight">
         {user ? (
           <Link to="/setting">
-            <img
-              className="topImg"
-              src={user.profilePic}
-              alt=""
-            />
+            <img className="topImg" src={PF+user.profilePic} alt="" />
           </Link>
         ) : (
           <ul className="topList">
@@ -54,6 +54,7 @@ export default function TopBar() {
             </li>
           </ul>
         )}
+        <i className="topSearchIcon fas fa-search"></i>
       </div>
     </div>
   );
