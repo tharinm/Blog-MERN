@@ -11,6 +11,7 @@ export default function SinglePost() {
   const PF = "http://localhost:3000/images/";
 
   const { user } = useContext(Context);
+  
 
   //get post location
   const path = location.pathname.split("/")[2];
@@ -28,6 +29,8 @@ export default function SinglePost() {
     };
     getPost();
   }, [path]);
+
+  console.log(post)
 
   const handleDelete = async () => {
     try {
